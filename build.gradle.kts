@@ -1,3 +1,8 @@
+//plugins {
+//    // ...
+//    id("com.squareup.sqldelight")
+//}
+
 buildscript {
     repositories {
         gradlePluginPortal()
