@@ -22,15 +22,13 @@ kotlin {
             baseName = "shared"
         }
     }
-
     val ktorVersion = "1.6.1"
     val serializationVersion = "1.2.2"
     val sqlDelightVersion: String by project
     val coroutinesVersion = "1.5.0-native-mt"
 
     sourceSets {
-        val commonMain by getting
-        val commonTest by getting {
+        val commonMain by getting {
             dependencies {
                 implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:$coroutinesVersion")
                 implementation("io.ktor:ktor-client-core:$ktorVersion")
@@ -39,14 +37,12 @@ kotlin {
                 implementation("com.squareup.sqldelight:runtime:$sqlDelightVersion")
             }
         }
-
         val androidMain by getting {
             dependencies {
                 implementation("io.ktor:ktor-client-android:$ktorVersion")
                 implementation("com.squareup.sqldelight:android-driver:$sqlDelightVersion")
             }
         }
-
         val androidTest by getting
         val iosX64Main by getting
         val iosArm64Main by getting
@@ -61,7 +57,6 @@ kotlin {
         val iosArm64Test by getting
         val iosSimulatorArm64Test by getting
         val iosTest by creating {
-            dependsOn(commonTest)
             iosX64Test.dependsOn(this)
             iosArm64Test.dependsOn(this)
             iosSimulatorArm64Test.dependsOn(this)
@@ -70,10 +65,10 @@ kotlin {
 }
 
 android {
-    compileSdk = 32
+    compileSdk = 31
     sourceSets["main"].manifest.srcFile("src/androidMain/AndroidManifest.xml")
     defaultConfig {
-        minSdk = 26
-        targetSdk = 32
+        minSdk = 21
+        targetSdk = 31
     }
 }
